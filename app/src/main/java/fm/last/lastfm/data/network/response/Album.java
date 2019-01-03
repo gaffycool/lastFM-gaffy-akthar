@@ -29,6 +29,9 @@ public class Album  implements Parcelable{
     @Expose
     public String mbid;
 
+    public Album(){
+
+    }
     protected Album(Parcel in) {
         name = in.readString();
         artist = in.readString();

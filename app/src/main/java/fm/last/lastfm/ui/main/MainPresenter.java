@@ -39,10 +39,8 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.View>
                     @Override
                     public void onSuccess(SearchResponse searchResponse) {
                         if(isViewAttached()){
-
                                 getMvpView().displayData(searchResponse.getResults().getAlbummatches()
                                         .getAlbum());
-
                         }
                     }
 
