@@ -1,4 +1,4 @@
-package fm.last.lastfm.base;
+package fm.last.lastfm.ui.base;
 
 public interface MvpView {
 

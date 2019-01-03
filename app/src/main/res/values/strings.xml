@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LastFM</string>
+    <string name="search_text">Search Text</string>
+    <string name="search">Search</string>
+    <string name="title">Title</string>
+    <string name="artist">Artist</string>
 </resources>

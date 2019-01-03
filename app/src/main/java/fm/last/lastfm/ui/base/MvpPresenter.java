@@ -1,4 +1,4 @@
-package fm.last.lastfm.base;
+package fm.last.lastfm.ui.base;
 
 public interface MvpPresenter<T> {
     void attach(T view);

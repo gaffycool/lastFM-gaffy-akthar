@@ -1,4 +1,4 @@
-package fm.last.lastfm.base;
+package fm.last.lastfm.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
