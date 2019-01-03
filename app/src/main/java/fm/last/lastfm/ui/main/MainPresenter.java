@@ -46,28 +46,30 @@ public class MainPresenter extends BaseMvpPresenter<MainContract.View>
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
-                        if(isViewAttached()){
-                            if(e instanceof HttpException){
-                                HttpException httpException = (HttpException)e;
-                                if(httpException.response().errorBody()!=null) {
-                                    try {
-                                        getMvpView().displayToast(new Gson().fromJson(httpException.response().errorBody().string(),Error.class).getMessage());
-                                    } catch (IOException e1) {
-                                        e1.printStackTrace();
-                                        getMvpView().displayToast(e1.getLocalizedMessage());
-                                    }
-                                }else{
-                                    getMvpView().displayToast(e.getLocalizedMessage());
-                                }
-                            }else {
-                                getMvpView().displayToast(e.getLocalizedMessage());
-                            }
-                        }
+                        handleError(e);
                     }
                 });
     }
-
+    private void handleError(Throwable e){
+        e.printStackTrace();
+        if(isViewAttached()){
+            if(e instanceof HttpException){
+                HttpException httpException = (HttpException)e;
+                if(httpException.response().errorBody()!=null) {
+                    try {
+                        getMvpView().displayToast(new Gson().fromJson(httpException.response().errorBody().string(),Error.class).getMessage());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                        getMvpView().displayToast(e1.getLocalizedMessage());
+                    }
+                }else{
+                    getMvpView().displayToast(e.getLocalizedMessage());
+                }
+            }else {
+                getMvpView().displayToast(e.getLocalizedMessage());
+            }
+        }
+    }
     @Override
     public void detach() {
         disposable.clear();

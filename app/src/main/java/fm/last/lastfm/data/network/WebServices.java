@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface WebServices {
-    @GET("/2.0/?method=album.search&api_key="+Constant.API_KEY +"&format=json")
+    @GET("/2.0/?method=album.search&format=json")
     Single<SearchResponse> searchAlbum(@Query("album") String keyword);
 }
