@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         @Override
         public void albumOnClick(Album album) {
             Intent intent = new Intent(MainActivity.this,DetailActivity.class);
-            intent.putExtra(Constant.KEY,album);
+            intent.putExtra(Constant.KEY_ALBUM,album);
             startActivity(intent);
         }
     };

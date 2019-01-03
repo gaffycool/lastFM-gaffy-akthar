@@ -10,6 +10,7 @@ public class SearchResponse {
     @Expose
     private Results results;
 
+
     public Results getResults() {
         return results;
     }
@@ -17,4 +18,5 @@ public class SearchResponse {
     public void setResults(Results results) {
         this.results = results;
     }
+
 }

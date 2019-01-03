@@ -8,7 +8,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Album implements Parcelable {
+public class Album  implements Parcelable{
 
     @SerializedName("name")
     @Expose
@@ -33,6 +33,7 @@ public class Album implements Parcelable {
         name = in.readString();
         artist = in.readString();
         url = in.readString();
+        image = in.createTypedArrayList(Image.CREATOR);
         streamable = in.readString();
         mbid = in.readString();
     }
@@ -48,20 +49,6 @@ public class Album implements Parcelable {
             return new Album[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(artist);
-        dest.writeString(url);
-        dest.writeString(streamable);
-        dest.writeString(mbid);
-    }
 
     public String getName() {
         return name;
@@ -109,5 +96,20 @@ public class Album implements Parcelable {
 
     public void setMbid(String mbid) {
         this.mbid = mbid;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(artist);
+        dest.writeString(url);
+        dest.writeTypedList(image);
+        dest.writeString(streamable);
+        dest.writeString(mbid);
     }
 }

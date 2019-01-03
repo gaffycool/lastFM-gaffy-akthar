@@ -4,4 +4,5 @@
     <string name="search">Search</string>
     <string name="title">Title</string>
     <string name="artist">Artist</string>
+    <string name="open_website">Open Website</string>
 </resources>
