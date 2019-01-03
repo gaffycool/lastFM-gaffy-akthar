@@ -40,7 +40,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumViewHolder> {
         final Album album = albums.get(i);
         albumViewHolder.tvTitle.setText(album.name);
         albumViewHolder.tvArtist.setText(album.artist);
-        Glide.with(context).load(album.image.get(4).text).into(albumViewHolder.ivCover);
+        Glide.with(context).load(album.image.get(3).text).into(albumViewHolder.ivCover);
         albumViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

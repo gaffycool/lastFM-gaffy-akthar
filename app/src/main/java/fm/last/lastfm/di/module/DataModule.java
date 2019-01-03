@@ -6,9 +6,9 @@ import fm.last.lastfm.data.DataManager;
 import fm.last.lastfm.data.network.RestApiHelper;
 
 @Module
-class DataModule {
+public class DataModule {
     @Provides
-    DataManager provideDataManager(RestApiHelper restApiHelper){
+    public DataManager provideDataManager(RestApiHelper restApiHelper){
         return new DataManager(restApiHelper);
     }
 }

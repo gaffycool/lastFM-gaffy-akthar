@@ -1,5 +1,7 @@
 package fm.last.lastfm.di.module;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
 import dagger.Module;
 import dagger.Provides;
 import fm.last.lastfm.Constant;
@@ -35,6 +37,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .baseUrl(Constant.BASE_URL)
                 .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
                 .build();
     }
@@ -43,7 +46,7 @@ public class NetworkModule {
         return retrofit.create(WebServices.class);
     }
     @Provides
-    RestApiHelper provideRestApiHelper(WebServices webServices){
+    public RestApiHelper provideRestApiHelper(WebServices webServices){
         return new RestApiHelper(webServices);
     }
 }

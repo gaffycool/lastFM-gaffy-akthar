@@ -9,7 +9,10 @@ import android.widget.EditText;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fm.last.lastfm.Constant;
 import fm.last.lastfm.R;
@@ -40,11 +43,13 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         return R.layout.activity_main;
     }
 
-    MainContract.Presenter presenter;
+    @Inject
+    MainPresenter presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new MainPresenter();
+        ButterKnife.bind(this);
+        getComponent().inject(this);
         presenter.attach(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvAlbum.setLayoutManager(linearLayoutManager);
@@ -60,5 +65,11 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
         AlbumAdapter adapter = new AlbumAdapter(albumList,albumOnClickListener,this);
         rvAlbum.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.detach();
+        super.onDestroy();
     }
 }
