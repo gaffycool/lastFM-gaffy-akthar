@@ -52,6 +52,9 @@ public class MainPresenterTest {
 
     Single<SearchResponse> singleSearchResponseSuccess;
 
+
+    Single<SearchResponse> singleSearchResponseError;
+
     SearchResponse searchResponse;
     List<Album> albums;
     @Before
@@ -75,6 +78,12 @@ public class MainPresenterTest {
                 emitter.onSuccess(searchResponse);
             }
         });
+        singleSearchResponseError = Single.create(new SingleOnSubscribe<SearchResponse>() {
+            @Override
+            public void subscribe(SingleEmitter<SearchResponse> emitter) throws Exception {
+                emitter.onError(new RuntimeException("Exception"));
+            }
+        });
     }
     @Test
     public void testSearchSuccess(){
@@ -83,10 +92,10 @@ public class MainPresenterTest {
         verify(mainView).displayData(albums);
     }
 
-    /*@Test
+    @Test
     public void testSearchForbidden(){
-        when(dataManager.searchAlbum(anyString())).thenReturn();
+        when(dataManager.searchAlbum(anyString())).thenReturn(singleSearchResponseError);
         presenter.loadData("abc");
-        verify(mainView).displayData(albums);
-    }*/
+        verify(mainView).displayToast("Exception");
+    }
 }
